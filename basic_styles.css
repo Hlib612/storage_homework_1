@@ -1,0 +1,14 @@
+.form_css{
+    display: flex;
+    justify-content: baseline;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+.input_css{
+    width: 250px;
+    height: 35px;
+}
+.button_css{
+    width: 150px;
+    height: 35px;
+}

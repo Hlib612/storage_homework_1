@@ -8,6 +8,8 @@ const contactList = document.querySelector("#contact_list_js");
 
 const FORMDATA = "form-data";
 
+const contactLIst =[];
+
 console.log(localStorage);
 const onSubmitForm = (event) => {
   event.preventDefault();
@@ -41,7 +43,9 @@ const onSubmitForm = (event) => {
   );
   }
 
+  contactLIst.push()
 
+// console.log(localStorage.getItem(`contact ${formData.name}`))
   // localStorage.getItem(`contact ${formData.name}`);
   form.reset();
   localStorage.removeItem(FORMDATA);

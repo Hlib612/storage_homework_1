@@ -8,14 +8,9 @@ const contactList = document.querySelector("#contact_list_js");
 
 const FORMDATA = "form-data";
 
-const contactLIst =[];
+const contactsLIst = [];
 
-console.log(localStorage);
-const onSubmitForm = (event) => {
-  event.preventDefault();
-  console.log(event.target);
-  console.log(event.target.elements);
-
+const createItem = () => {
   const formData = {
     name: nameInput.value,
     surname: surnameInput.value,
@@ -23,32 +18,55 @@ const onSubmitForm = (event) => {
     email: emailInput.value,
   };
 
-  if (localStorage.length === 0) {
-    localStorage.setItem(`contact ${formData.name}`, JSON.stringify(formData));
-      contactList.insertAdjacentHTML(
+  contactList.insertAdjacentHTML(
     "beforeend",
     `<li class="visual_contact" id="visual_contact_js">
             <h3 id="visual_contact_name">${formData.name}</h3>
             <p id="visual_contact_phone">${formData.phone}</p>
+            <p id="visual_contact_surname">${formData.surname}</p>
+            <p id="visual_contact_email">${formData.email}</p>
         </li>`
   );
+
+  contactsLIst.push(
+    `<li class="visual_contact" id="visual_contact_js">
+            <h3 id="visual_contact_name">${formData.name}</h3>
+            <p id="visual_contact_phone">${formData.phone}</p>
+            <p id="visual_contact_surname">${formData.surname}</p>
+            <p id="visual_contact_email">${formData.email}</p>
+        </li>`
+  );
+};
+
+const showList = () => {
+  let refreshedContactsList = localStorage.getItem("contactsLIst");
+  console.log(refreshedContactsList);
+  contactList.insertAdjacentHTML("afterbegin", refreshedContactsList);
+};
+
+showList();
+
+console.log(localStorage);
+const onSubmitForm = (event) => {
+  event.preventDefault();
+  let refreshedContactsList = localStorage.getItem("contactsLIst");
+  if(nameInput.value === "" || phoneInput.value === ""){
+ return 
+      }
+
+if (localStorage.getItem("contactsLIst")) {
+    contactsLIst.push(refreshedContactsList);
+    createItem();
+    localStorage.setItem("contactsLIst", contactsLIst);
   } else {
-    localStorage.setItem(`contact ${formData.name}`, JSON.stringify(formData));
-      contactList.insertAdjacentHTML(
-    "beforeend",
-    `<li class="visual_contact" id="visual_contact_js">
-            <h3 id="visual_contact_name">${formData.name}</h3>
-            <p id="visual_contact_phone">${formData.phone}</p>
-        </li>`
-  );
+    createItem();
+    localStorage.setItem("contactsLIst", contactsLIst);
   }
 
-  contactLIst.push()
-
-// console.log(localStorage.getItem(`contact ${formData.name}`))
-  // localStorage.getItem(`contact ${formData.name}`);
   form.reset();
   localStorage.removeItem(FORMDATA);
+  // console.log();
+  
 };
 
 const oninputChange = (event) => {

@@ -18,6 +18,7 @@ const createItem = () => {
     email: emailInput.value,
   };
 
+
   contactList.insertAdjacentHTML(
     "beforeend",
     `<li class="visual_contact" id="visual_contact_js">
@@ -29,13 +30,38 @@ const createItem = () => {
   );
 
   contactsLIst.push(
-    `<li class="visual_contact" id="visual_contact_js">
-            <h3 id="visual_contact_name">${formData.name}</h3>
-            <p id="visual_contact_phone">${formData.phone}</p>
-            <p id="visual_contact_surname">${formData.surname}</p>
-            <p id="visual_contact_email">${formData.email}</p>
-        </li>`
-  );
+
+    {
+      name: nameInput.value,
+    surname: surnameInput.value,
+    phone: phoneInput.value,
+    email: emailInput.value,
+    }
+  )
+
+ const markupList = contactsLIst.map(contact => {
+        return `<li class="visual_contact" id="visual_contact_js">
+            <h3 id="visual_contact_name">${contact.name}</h3>
+            <p id="visual_contact_phone">${contact.phone}</p>
+            <p id="visual_contact_surname">${contact.surname}</p>
+            <p id="visual_contact_email">${contact.email}</p>
+        </li>`;
+    });
+    
+    console.log(markupList);
+    const murkup = markupList.join(" ");
+    console.log(murkup);
+    // todoList.innerHTML = murkup;
+
+
+
+    // `<li class="visual_contact" id="visual_contact_js">
+    //         <h3 id="visual_contact_name">${formData.name}</h3>
+    //         <p id="visual_contact_phone">${formData.phone}</p>
+    //         <p id="visual_contact_surname">${formData.surname}</p>
+    //         <p id="visual_contact_email">${formData.email}</p>
+    //     </li>`
+  
 };
 
 const showList = () => {
